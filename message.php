@@ -5,11 +5,12 @@ $message = $_POST['message'];
 $encode = array(
     "a" => "u",
     "b" => "z",
-    "c" => "y",
-    "d" => "x",
-    "e" => "v",
-    "é" => "v",
-    "è" => "v",
+    "c" => "x",
+    "ç" => "x",
+    "d" => "v",
+    "e" => "o",
+    "é" => "o",
+    "è" => "o",
     "f" => "t",
     "g" => "s",
     "h" => "r",
@@ -17,24 +18,50 @@ $encode = array(
     "ï" => "a",
     "j" => "q",
     "k" => "p",
-    "l" => "n",
-    "m" => "m",
+    "l" => "m",
+    "m" => "n",
     "n" => "l",
     "o" => "e",
     "ö" => "e",
     "p" => "k",
-    "q" => "i",
-    "r" => "j",
-    "s" => "h",
-    "t" => "g",
+    "q" => "j",
+    "r" => "h",
+    "s" => "g",
+    "t" => "f",
+    "ü" => "i",
     "u" => "i",
-    "v" => "f",
+    "v" => "e",
     "x" => "d",
     "y" => "c",
-    "z" => "b"
+    "z" => "b",
+    "A" => "U",
+    "B" => "Z",
+    "C" => "X",
+    "D" => "V",
+    "E" => "O",
+    "F" => "T",
+    "G" => "S",
+    "H" => "R",
+    "I" => "A",
+    "J" => "Q",
+    "K" => "P",
+    "L" => "M",
+    "M" => "N",
+    "N" => "L",
+    "O" => "E",
+    "P" => "K",
+    "Q" => "J",
+    "R" => "H",
+    "S" => "G",
+    "T" => "F",
+    "U" => "I",
+    "V" => "E",
+    "X" => "D",
+    "Y" => "C",
+    "Z" => "B",
 );
 
-$output = strtr(strtolower($message), $encode);
+$output = strtr($message, $encode);
 ?>
 
 <html>
@@ -50,8 +77,19 @@ $output = strtr(strtolower($message), $encode);
         <h1> HTML Encryptor </h1>
         <p> This HTML encryptor lets you transform your messages, simply by entering the message below. You can then paste in your social media and let your friends decrypt it for fun. </p>
         <hr/>
-        <h2> Your encrypted message is: </h2>
-        <p> <?php echo $output; ?> </p>
+        <h2> Your original message </h2>
+        <p class="justify"> 
+        <?php
+        if (!empty($message)){ 
+            echo $message;
+        } else{
+            header('Location: index.php');
+        }
+        ?> 
+        </p>
+        
+        <h2> Was converted to: </h2>
+        <p class="justify"> <?php echo $output; ?> </p>
         <hr/>
         
         <form action="message.php" method="post" >
